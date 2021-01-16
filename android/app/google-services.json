@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "744499671354",
+    "project_id": "roommate-e3003",
+    "storage_bucket": "roommate-e3003.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:744499671354:android:81f0cdbbfa239f51152003",
+        "android_client_info": {
+          "package_name": "com.example.roommate_app_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "744499671354-jjumqkccpas9lel6fiv0rd49p0cpdeg4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAM7Xd8UTUVUxbRns3AFfN2z4-m9VD_MQw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "744499671354-jjumqkccpas9lel6fiv0rd49p0cpdeg4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
