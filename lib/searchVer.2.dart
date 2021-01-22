@@ -1,12 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
 import 'package:roommate_app_project/account.dart';
 import 'package:roommate_app_project/searchservice.dart';
 import 'package:roommate_app_project/store.dart';
 import 'FinalHome.dart';
-
 import 'hometips.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class SearchFirebase extends StatefulWidget {
   @override
@@ -16,9 +15,7 @@ class SearchFirebase extends StatefulWidget {
 }
 
 class _SearchFirebase extends State<SearchFirebase> {
-  TextEditingController _searchController = TextEditingController();
-
-  @override
+  /*@override
   void initState() {
     _searchController.addListener(_onSearchChanged);
     super.initState();
@@ -33,7 +30,7 @@ class _SearchFirebase extends State<SearchFirebase> {
 
   _onSearchChanged() {
     print(_searchController.text);
-  }
+  }*/
 
   var queryResultSet = [];
   var tempSearchStore = [];
@@ -74,12 +71,8 @@ class _SearchFirebase extends State<SearchFirebase> {
       body: ListView(
         scrollDirection: Axis.vertical,
         children: <Widget>[
-          /*TextField(
-            controller: _searchcontroller,
-            decoration: InputDecoration(prefixIcon: Icon(Icons.home)),
-          ),*/
           Padding(
-            padding: const EdgeInsets.fromLTRB(10, 20, 10, 10),
+            padding: const EdgeInsets.fromLTRB(10, 25, 10, 10),
             child: Column(
               children: <Widget>[
                 TextField(
@@ -130,20 +123,6 @@ class _SearchFirebase extends State<SearchFirebase> {
               children: tempSearchStore.map((elemaent) {
                 return buildResultCard(elemaent);
               }).toList()),
-          /*Stack(
-            children: <Widget>[
-              Center(
-                child: Column(
-                  children: <Widget>[
-                    Livsearch(),
-                    Bedsearch(),
-                    Fursearch(),
-                    //addData(),
-                  ],
-                ),
-              )
-            ],
-          ),*/
         ],
       ),
       endDrawer: Drawer(
@@ -215,7 +194,7 @@ class _SearchFirebase extends State<SearchFirebase> {
               backgroundColor: Color(0xAA000000)),
           BottomNavigationBarItem(
               icon: IconButton(
-                icon: Icon(Icons.search),
+                icon: Icon(Icons.burst_mode_rounded),
                 iconSize: 25,
                 color: Color(0xAAa11300),
                 onPressed: () {
@@ -226,7 +205,22 @@ class _SearchFirebase extends State<SearchFirebase> {
                 },
               ),
               title: Text(
-                'Search',
+                'Iwareh',
+                style: TextStyle(color: Color(0xAA000000)),
+              ),
+              backgroundColor: Color(0xAA000000)),
+          BottomNavigationBarItem(
+              icon: IconButton(
+                icon: Icon(Icons.add_a_photo_rounded),
+                iconSize: 25,
+                color: Color(0xAAa11300),
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Tipspage()));
+                },
+              ),
+              title: Text(
+                'Add img',
                 style: TextStyle(color: Color(0xAA000000)),
               ),
               backgroundColor: Color(0xAA000000)),
@@ -252,41 +246,20 @@ class _SearchFirebase extends State<SearchFirebase> {
 }
 
 Widget buildResultCard(data) {
-  return /*Container(
-    decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(30), color: Colors.black),
-    child: Container(
-      child: Center(
-        child: Text(
-          data['TypeofRoom'],
-          textAlign: TextAlign.center,
-          style: TextStyle(
-              color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold),
-        ),
-      ),
-    ),
-  );*/
-      Card(
+  return Card(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(25),
     ),
     elevation: 2.0,
-    child: Container(
-      child: Center(
-        child: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: NetworkImage(data['imgURL']),
-            ),
-          ),
-        ),
-        //child: Image.asset(['imgURL']),
-        /*child: Text(
-          data['TypeofRoom'],
-          textAlign: TextAlign.center,
-          style: TextStyle(color: Colors.black, fontSize: 20),
-        ),*/
-      ),
+    child:
+        /*Container(
+    height: 200,
+    width: 200,
+    child: Image.network(data['TypeofRoom']),*/
+        Text(
+      data['TypeofRoom'],
+      textAlign: TextAlign.center,
+      style: TextStyle(color: Colors.black, fontSize: 20),
     ),
   );
 }

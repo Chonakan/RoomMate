@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/button_list.dart';
 import 'package:flutter_signin_button/button_view.dart';
 import 'package:provider/provider.dart';
-import 'package:roommate_app_project/Signin2.dart';
+import 'Signin2.dart';
 import 'package:roommate_app_project/blocs/auth_bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:async';

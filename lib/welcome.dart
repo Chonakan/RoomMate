@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:roommate_app_project/Signup.dart';
-
+import 'authenticate/Signup.dart';
 import 'Signin2.dart';
 
 class Welcomepage extends StatefulWidget {

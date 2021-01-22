@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'welcome.dart';
-
+import 'authenticate/Signup.dart';
 import 'package:roommate_app_project/blocs/auth_bloc.dart';
 
 void main() async {
@@ -14,8 +13,9 @@ class MyApp extends StatelessWidget {
     return Provider(
       create: (context) => AuthBloc(),
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'FacebookLogin',
-        home: Welcomepage(),
+        home: SignUppage(),
       ),
     );
   }

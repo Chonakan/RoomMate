@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:roommate_app_project/search.dart';
 import 'FinalHome.dart';
-import 'Imagewarehouse.dart';
-import 'account.dart';
-import 'store.dart';
+import 'searchVer.2.dart';
 
 class Tipspage extends StatefulWidget {
   @override
@@ -23,63 +20,6 @@ class Tipsstate extends State<Tipspage> {
           title: Text(
             'Home Decoration Tips',
             style: TextStyle(color: Colors.black, fontSize: 17),
-          ),
-        ),
-        endDrawer: Drawer(
-          child: ListView(
-            children: <Widget>[
-              DrawerHeader(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage('assets/Drawerheader.jpg'),
-                      fit: BoxFit.cover),
-                ),
-                child: Text(''),
-              ),
-              /*ListTile(
-              title: Text('Image warehouse'),
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Warehousepage()));
-              },
-              trailing: Icon(
-                Icons.save,
-                color: Color(0xAA595b83),
-              ),
-            ),*/
-              ListTile(
-                title: Text('Furniture store'),
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Storepage()));
-                },
-                trailing: Icon(
-                  Icons.store_mall_directory,
-                  color: Color(0xAA595b83),
-                ),
-              ),
-              ListTile(
-                title: Text('Account'),
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Accountpage()));
-                },
-                trailing: Icon(
-                  Icons.person,
-                  color: Color(0xAA595b83),
-                ),
-              ),
-              ListTile(
-                title: Text('Home'),
-                onTap: () {
-                  Navigator.of(context).pop();
-                },
-                trailing: Icon(
-                  Icons.home,
-                  color: Color(0xAA595b83),
-                ),
-              ),
-            ],
           ),
         ),
         bottomNavigationBar: BottomNavigationBar(
@@ -111,8 +51,10 @@ class Tipsstate extends State<Tipspage> {
                   iconSize: 25,
                   color: Color(0xAAa11300),
                   onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Searchpage()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => SearchFirebase()));
                   },
                 ),
                 title: Text(

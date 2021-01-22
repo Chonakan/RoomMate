@@ -1,95 +1,45 @@
+import 'dart:typed_data';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:roommate_app_project/Homepage.dart';
-import 'package:roommate_app_project/Iwareh.dart';
-import 'package:roommate_app_project/addimg.dart';
-import 'package:roommate_app_project/addimgfromphone.dart';
-import 'package:roommate_app_project/hometips.dart';
-import 'package:roommate_app_project/searchVer.2.dart';
-import 'package:roommate_app_project/dynamicH.dart';
+import 'FinalHome.dart';
+import 'addimg.dart';
+import 'hometips.dart';
+import 'dataHolder.dart';
 
-import 'store.dart';
-import 'UserLogin.dart';
-
-class FinalHomepage extends StatefulWidget {
+class IWarehouseHpage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return _FinalHomepage();
+    return IWarehouseHState();
   }
 }
 
-class _FinalHomepage extends State<FinalHomepage> {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Homepage(),
-    );
-  }
-}
-
-class Homepage extends StatelessWidget {
+class IWarehouseHState extends State<IWarehouseHpage> {
   int _currentIndex = 0;
+
+  Widget makeImagesGrid() {
+    return GridView.builder(
+        itemCount: 12,
+        gridDelegate:
+            SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+        itemBuilder: (context, index) {
+          return ImageGridItem(index + 1);
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
-        toolbarHeight: 50,
-        backgroundColor: Colors.white,
-        iconTheme: IconThemeData(color: Colors.black),
+        backgroundColor: Colors.black,
+        title: Text('IMAGE WAREHOUSE'),
+        centerTitle: true,
       ),
-      endDrawer: Drawer(
-        child: ListView(
-          children: <Widget>[
-            DrawerHeader(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('assets/Drawerheader.jpg'),
-                    fit: BoxFit.cover),
-              ),
-              child: Text(''),
-            ),
-            ListTile(
-              title: Text('Furniture store'),
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Storepage()));
-              },
-              trailing: Icon(
-                Icons.store_mall_directory,
-                color: Color(0xAA595b83),
-              ),
-            ),
-            ListTile(
-              title: Text('Account'),
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Facebookpage()));
-              },
-              trailing: Icon(
-                Icons.person,
-                color: Color(0xAA595b83),
-              ),
-            ),
-            ListTile(
-              title: Text('Home'),
-              onTap: () {
-                Navigator.of(context).pop();
-              },
-              trailing: Icon(
-                Icons.home,
-                color: Color(0xAA595b83),
-              ),
-            ),
-          ],
-        ),
-      ),
-      body: Bodydesign(),
+      body: Container(child: makeImagesGrid()),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         type: BottomNavigationBarType.fixed,
         backgroundColor: Color(0xAAFFFFFF),
-        //selectedFontSize: 15,
-        //unselectedFontSize: 10,
         items: [
           BottomNavigationBarItem(
               icon: IconButton(
@@ -156,5 +106,72 @@ class Homepage extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class ImageGridItem extends StatefulWidget {
+  int _index;
+
+  ImageGridItem(int index) {
+    this._index = index;
+  }
+
+  @override
+  _ImageGridItemState createState() => _ImageGridItemState();
+}
+
+class _ImageGridItemState extends State<ImageGridItem> {
+  Uint8List imageFile;
+  StorageReference photosReference =
+      FirebaseStorage.instance.ref().child('ImageWarehouse');
+  int MAX_SIZE = 10 * 1024 * 1024;
+
+  getImage() {
+    if (!requestedIndexes.contains(widget._index)) {
+      photosReference
+          .child("W_${widget._index}.jpg")
+          .getData(MAX_SIZE)
+          .then((data) {
+        this.setState(() {
+          imageFile = data;
+        });
+        imageData.putIfAbsent(widget._index, () {
+          return data;
+        });
+      }).catchError((error) {});
+      requestedIndexes.add(widget._index);
+    }
+  }
+
+  Widget decideGridTileWidget() {
+    if (imageFile == null) {
+      return Center(
+          child: Text(
+        'Loading...',
+        style: TextStyle(color: Colors.white),
+      ));
+    } else {
+      return Image.memory(
+        imageFile,
+        fit: BoxFit.cover,
+      );
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    if (!imageData.containsKey(widget._index)) {
+      getImage();
+    } else {
+      this.setState(() {
+        imageFile = imageData[widget._index];
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GridTile(child: decideGridTileWidget());
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:roommate_app_project/Bedroomcatalog.dart';
 import 'package:roommate_app_project/oftheyear1.dart';
-
+import 'package:roommate_app_project/Databasemenager/Databasemenager.dart';
 import 'Livingroomcatalog.dart';
 import 'kitchenroomcatalog.dart';
 import 'oftheyear2.dart';
@@ -379,7 +379,7 @@ class Homedesign extends State<Bodydesign> {
                   scrollDirection: Axis.vertical,
                   children: <Widget>[
                     Container(
-                      padding: EdgeInsets.all(30),
+                      padding: EdgeInsets.all(20),
                       child: Column(children: <Widget>[
                         Row(children: <Widget>[
                           Column(
@@ -463,7 +463,7 @@ class Homedesign extends State<Bodydesign> {
                       ]),
                     ),
                     Container(
-                      padding: EdgeInsets.all(30),
+                      padding: EdgeInsets.all(20),
                       child: Column(children: <Widget>[
                         Row(children: <Widget>[
                           Column(
@@ -546,7 +546,7 @@ class Homedesign extends State<Bodydesign> {
                       ]),
                     ),
                     Container(
-                      padding: EdgeInsets.all(30),
+                      padding: EdgeInsets.all(20),
                       child: Column(children: <Widget>[
                         Row(children: <Widget>[
                           Column(
@@ -628,7 +628,7 @@ class Homedesign extends State<Bodydesign> {
                       ]),
                     ),
                     Container(
-                      padding: EdgeInsets.all(30),
+                      padding: EdgeInsets.all(20),
                       child: Column(children: <Widget>[
                         Row(children: <Widget>[
                           Column(
@@ -710,7 +710,7 @@ class Homedesign extends State<Bodydesign> {
                       ]),
                     ),
                     Container(
-                      padding: EdgeInsets.all(30),
+                      padding: EdgeInsets.all(20),
                       child: Column(children: <Widget>[
                         Row(children: <Widget>[
                           Column(

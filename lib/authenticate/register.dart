@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:roommate_app_project/services/auth_service.dart';
-import 'package:roommate_app_project/Signin2.dart';
 import 'package:roommate_app_project/welcome.dart';
+import 'package:roommate_app_project/Signin2.dart';
 
 class Register extends StatefulWidget {
+  final Function toggleView;
+  Register({this.toggleView});
+
   @override
   _RegisterState createState() => _RegisterState();
 }
@@ -14,10 +17,23 @@ class _RegisterState extends State<Register> {
 
   String email = '';
   String password = '';
+  String error = '';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xAAFBF7F6),
+        elevation: 0,
+        actions: <Widget>[
+          FlatButton.icon(
+              onPressed: () {
+                widget.toggleView();
+              },
+              icon: Icon(Icons.person),
+              label: Text('Sign In'))
+        ],
+      ),
       body: Stack(
         children: <Widget>[
           Container(
@@ -39,7 +55,7 @@ class _RegisterState extends State<Register> {
               },
             ),
           ),
-          Positioned(
+          /*Positioned(
             right: 30,
             top: 70,
             child: IconButton(
@@ -50,60 +66,86 @@ class _RegisterState extends State<Register> {
                     MaterialPageRoute(builder: (context) => SignIn22page()));
               },
             ),
-          ),
-          Padding(
-            padding: EdgeInsets.fromLTRB(245, 88, 0, 0),
-            child: Text(
-              'Go to Sign In',
-              style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.fromLTRB(40, 135, 10, 0),
-            child: Text(
-              'Sign Up',
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-            ),
-          ),
-          /*Container(
-            padding: EdgeInsets.symmetric(vertical: 150.0, horizontal: 50.0),
-            child: Form(
-              child: Column(
-                children: <Widget>[
-                  SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(onChanged: (val) {}),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(obscureText: true, onChanged: (val) {}),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(onChanged: (val) {}),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(obscureText: true, onChanged: (val) {}),
-                  SizedBox(
-                    height: 40,
-                  ),
-                  RaisedButton(
-                    color: Color(0xAA353546),
-                    child: Text(
-                      'Sign Up',
-                      style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),
-                    ),
-                  )
-                ],
-              ),
-            ),
           ),*/
-          Padding(
+          ListView(
+            children: <Widget>[
+              /*Padding(
+                padding: EdgeInsets.fromLTRB(245, 88, 0, 0),
+                child: Text(
+                  'Go to Sign In',
+                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                ),
+              ),*/
+              Padding(
+                padding: EdgeInsets.fromLTRB(40, 130, 10, 0),
+                child: Text(
+                  'Register',
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 50.0),
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    children: <Widget>[
+                      SizedBox(
+                        height: 15,
+                      ),
+                      TextFormField(
+                          validator: (val) =>
+                              val.isEmpty ? "Enter your email" : null,
+                          onChanged: (val) {
+                            setState(() => email = val);
+                          }),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      TextFormField(
+                          obscureText: true,
+                          validator: (val) => val.length < 6
+                              ? "Enter a password 6+ chars long"
+                              : null,
+                          onChanged: (val) {
+                            setState(() => password = val);
+                          }),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      TextFormField(onChanged: (val) {}),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      TextFormField(onChanged: (val) {}),
+                      SizedBox(
+                        height: 50,
+                      ),
+                      /*RaisedButton(
+                        color: Color(0xAA353546),
+                        child: Text(
+                          'Sign Up',
+                          style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                        ),
+                        onPressed: () async {
+                          if (_formKey.currentState.validate()) {
+                            dynamic result = await _auth
+                                .registerWithEmailAndPassword(email, password);
+                            if (result == null) {
+                              setState(
+                                  () => error = "please supply a valid email");
+                            }
+                          }
+                        },
+                      )*/
+                    ],
+                  ),
+                ),
+              ),
+
+              /*Padding(
               padding: const EdgeInsets.fromLTRB(25, 180, 30, 0),
               child: ListTile(
                   title: TextField(
@@ -155,54 +197,42 @@ class _RegisterState extends State<Register> {
                       borderRadius: BorderRadius.circular(10),
                       borderSide: BorderSide(color: Colors.black)),
                 ),
-              ))),
-          /*Padding(
-            padding: EdgeInsets.fromLTRB(25, 450, 30, 10),
-            child: Checkbox(
-              activeColor: Colors.black,
-              value: monVal,
-              onChanged: (bool value) {
-                setState(() {
-                  monVal = value;
-                });
-              },
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.fromLTRB(70, 470, 20, 10),
-            child: Text(
-              'Please sign me up for the news',
-              style: TextStyle(fontSize: 12),
-            ),
-          ),*/
-          GestureDetector(
-            onTap: () async {
-              //if (_formKey.currentState.validate()) {
-
-              print(email);
-              print(password);
-
-              //}
-            },
-            child: Padding(
-              padding: EdgeInsets.fromLTRB(30, 470, 30, 10),
-              child: Container(
-                  height: 65,
-                  //color: Colors.red,
-                  padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+              ))),*/
+              GestureDetector(
+                onTap: () async {
+                  if (_formKey.currentState.validate()) {
+                    dynamic result = await _auth.registerWithEmailAndPassword(
+                        email, password);
+                    if (result == null) {
+                      setState(() => error = "please supply a valid email");
+                    }
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => SignIn22page()));
+                  }
+                },
+                child: Padding(
+                  padding: EdgeInsets.fromLTRB(30, 0, 30, 10),
                   child: Container(
-                      color: Color(0xAA353546),
-                      child: Center(
-                        child: Text(
-                          'Sign Up',
-                          style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
-                        ),
-                      ))),
-            ),
-          ),
+                      height: 65,
+                      //color: Colors.red,
+                      padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                      child: Container(
+                          color: Color(0xAA353546),
+                          child: Center(
+                            child: Text(
+                              'Sign Up',
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white),
+                            ),
+                          ))),
+                ),
+              ),
+            ],
+          )
         ],
       ),
     );
