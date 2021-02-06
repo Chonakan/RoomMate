@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'authenticate/Signup.dart';
+import 'package:roommate_app_project/signinfacebook.dart';
 import 'package:roommate_app_project/blocs/auth_bloc.dart';
 
 void main() async {
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'FacebookLogin',
-        home: SignUppage(),
+        home: SignInFacebookpage(),
       ),
     );
   }

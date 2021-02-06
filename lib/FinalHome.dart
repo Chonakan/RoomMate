@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:roommate_app_project/Homepage.dart';
-import 'package:roommate_app_project/Iwareh.dart';
-import 'package:roommate_app_project/addimg.dart';
-import 'package:roommate_app_project/addimgfromphone.dart';
 import 'package:roommate_app_project/hometips.dart';
-import 'package:roommate_app_project/searchVer.2.dart';
-import 'package:roommate_app_project/dynamicH.dart';
-
-import 'store.dart';
+import 'package:roommate_app_project/location.dart';
+import 'package:roommate_app_project/story.dart';
 import 'UserLogin.dart';
+import 'DH.dart';
+import 'package:roommate_app_project/Iwareh_community.dart';
 
 class FinalHomepage extends StatefulWidget {
   @override
@@ -52,7 +48,7 @@ class Homepage extends StatelessWidget {
               title: Text('Furniture store'),
               onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Storepage()));
+                    MaterialPageRoute(builder: (context) => Locationpage()));
               },
               trailing: Icon(
                 Icons.store_mall_directory,
@@ -66,7 +62,7 @@ class Homepage extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => Facebookpage()));
               },
               trailing: Icon(
-                Icons.person,
+                Icons.perm_contact_calendar_rounded,
                 color: Color(0xAA595b83),
               ),
             ),
@@ -83,11 +79,11 @@ class Homepage extends StatelessWidget {
           ],
         ),
       ),
-      body: Bodydesign(),
+      body: DynamicHomepage(),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         type: BottomNavigationBarType.fixed,
-        backgroundColor: Color(0xAAFFFFFF),
+        backgroundColor: Colors.white,
         //selectedFontSize: 15,
         //unselectedFontSize: 10,
         items: [
@@ -95,7 +91,7 @@ class Homepage extends StatelessWidget {
               icon: IconButton(
                 icon: Icon(Icons.home),
                 iconSize: 25,
-                color: Color(0xAAa11300),
+                color: Color(0xffFD7778),
                 onPressed: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => FinalHomepage()));
@@ -103,46 +99,44 @@ class Homepage extends StatelessWidget {
               ),
               title: Text(
                 'Home',
-                style: TextStyle(color: Color(0xAA000000)),
+                style: TextStyle(color: Colors.black),
               ),
               backgroundColor: Color(0xAA000000)),
           BottomNavigationBarItem(
               icon: IconButton(
                 icon: Icon(Icons.burst_mode_rounded),
                 iconSize: 25,
-                color: Color(0xAAa11300),
+                color: Color(0xffFD7778),
                 onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => IWarehouseHpage()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Communitypage()));
                 },
               ),
               title: Text(
                 'Iwareh',
-                style: TextStyle(color: Color(0xAA000000)),
+                style: TextStyle(color: Colors.black),
               ),
               backgroundColor: Color(0xAA000000)),
           BottomNavigationBarItem(
               icon: IconButton(
-                icon: Icon(Icons.add_a_photo_rounded),
+                icon: Icon(Icons.post_add_rounded),
                 iconSize: 25,
-                color: Color(0xAAa11300),
+                color: Color(0xffFD7778),
                 onPressed: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Addimgpage()));
+                      MaterialPageRoute(builder: (context) => Storypage()));
                 },
               ),
               title: Text(
-                'Add img',
-                style: TextStyle(color: Color(0xAA000000)),
+                'Add your story',
+                style: TextStyle(color: Colors.black),
               ),
               backgroundColor: Color(0xAA000000)),
           BottomNavigationBarItem(
               icon: IconButton(
                 icon: Icon(Icons.star),
                 iconSize: 25,
-                color: Color(0xAAa11300),
+                color: Color(0xffFD7778),
                 onPressed: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => Tipspage()));
@@ -150,7 +144,7 @@ class Homepage extends StatelessWidget {
               ),
               title: Text(
                 'Home tips',
-                style: TextStyle(color: Color(0xAA000000)),
+                style: TextStyle(color: Colors.black),
               ),
               backgroundColor: Color(0xAA000000)),
         ],

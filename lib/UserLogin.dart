@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/button_list.dart';
 import 'package:flutter_signin_button/button_view.dart';
 import 'package:provider/provider.dart';
-import 'Signin2.dart';
+import 'package:roommate_app_project/signinfacebook.dart';
 import 'package:roommate_app_project/blocs/auth_bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:async';
@@ -24,7 +24,7 @@ class FacebookState extends State<Facebookpage> {
     homeStateSubscription = authBloc.currentUser.listen((fbUser) {
       if (fbUser == null) {
         Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => SignIn22page()));
+            MaterialPageRoute(builder: (context) => SignInFacebookpage()));
       }
     });
     super.initState();
@@ -78,8 +78,8 @@ class FacebookState extends State<Facebookpage> {
                         height: 20,
                       ),*/
                       CircleAvatar(
-                        /*backgroundImage: NetworkImage(
-                            snapshot.data.photoUrl + '?width=500&height500'),*/
+                        // backgroundImage: NetworkImage(
+                        //     snapshot.data.photoUrl + '?width=500&height500'),
                         backgroundImage: AssetImage('assets/profileface.jpg'),
                         radius: 80,
                       ),

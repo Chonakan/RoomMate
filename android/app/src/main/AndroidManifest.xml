@@ -9,6 +9,8 @@
         android:name="io.flutter.app.FlutterApplication"
         android:label="roommate_app_project"
         android:icon="@mipmap/ic_launcher">
+      <meta-data android:name="com.google.android.geo.API_KEY"
+             android:value="AIzaSyAYudo3gvKzCH7XevBvojEGe_DvBvYB0Ew"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
